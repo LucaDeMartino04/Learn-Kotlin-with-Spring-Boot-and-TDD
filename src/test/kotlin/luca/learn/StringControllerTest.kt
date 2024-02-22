@@ -195,8 +195,8 @@ class StringControllerTest {
     }
 
     @Test
-    fun textCompare2Elements(){
-        val arrayText = arrayOf("Ciao", "Ciao")
+    fun textCompare2Elements() {
+        val arrayText = arrayOf("Ciao", "Ciao")// String Pool Memory (point at same value)Mat
         val jsonRequest = jacksonObjectMapper().writeValueAsString(arrayText)
         val result = arrayOf(true, true, true)
 
@@ -211,8 +211,8 @@ class StringControllerTest {
     }
 
     @Test
-    fun textCompare2ElementsWithDifferentValue(){
-        val arrayText = arrayOf("Ciao", String("Ciao".toCharArray()))
+    fun textCompare2ElementsWithDifferentValue() {
+        val arrayText = arrayOf("Ciao", String("Ciao".toCharArray()))// String Pool Memory, Heap
         val jsonRequest = jacksonObjectMapper().writeValueAsString(arrayText)
         val result = arrayOf(true, false, false)
 
@@ -225,5 +225,5 @@ class StringControllerTest {
                 content { result.toString() }
             }
     }
-    
+
 }
