@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
@@ -157,6 +158,26 @@ class MathControllerTest {
             .andExpect {
                 status { isOk() }
                 content { string("-0.9") }
+            }
+    }
+
+    @Test
+    fun switchNum(){
+        val num = -3444
+        mockMvc.get("$baseUrl/switchNum/$num")
+            .andExpect {
+                status { isOk() }
+                content { string("Ok") }
+            }
+    }
+
+    @Test
+    fun switchNumError(){
+        val num = 3
+        mockMvc.get("$baseUrl/switchNum/$num")
+            .andExpect {
+                status { HttpStatus.BAD_REQUEST }
+                content { string("Error num not in range") }
             }
     }
 }

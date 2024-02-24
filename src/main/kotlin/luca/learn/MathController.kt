@@ -1,5 +1,7 @@
 package luca.learn
 
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestBody
@@ -79,5 +81,16 @@ class MathController {
     fun preDecrement(@PathVariable num: Double): Double {
         var numFinal = num
         return --numFinal
+    }
+
+    @GetMapping("/switchNum/{num}")
+    fun switchNum(@PathVariable num: Double): ResponseEntity<String> {
+        var response = when{
+            num>=10 && num<20 -> ResponseEntity.ok().body("Ok")
+            num>200 -> ResponseEntity.ok().body("Ok")
+            num<-100 -> ResponseEntity.ok().body("Ok")
+            else -> ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error num not in range")
+        }
+        return response
     }
 }
