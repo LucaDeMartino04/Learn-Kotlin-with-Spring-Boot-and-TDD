@@ -88,4 +88,14 @@ class StringController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("array size != 2")
         }
     }
+
+    @GetMapping("/switch/{gender}")
+    fun textSwitch(@PathVariable gender: String): ResponseEntity<String> {
+        val response = when (gender) {
+            "Male" -> ResponseEntity.ok().body("Ok")
+            "Female" -> ResponseEntity.ok().body("Ok")
+            else -> ResponseEntity.status(HttpStatus.BAD_REQUEST).body("gender not accepted")
+        }
+        return response
+    }
 }

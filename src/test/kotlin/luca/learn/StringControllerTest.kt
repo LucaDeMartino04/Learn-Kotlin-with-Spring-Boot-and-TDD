@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
@@ -223,6 +224,26 @@ class StringControllerTest {
             .andExpect {
                 status { isOk() }
                 content { result.toString() }
+            }
+    }
+
+    @Test
+    fun textSwitch(){
+        val gender = "Male"
+        mockMvc.get("$baseUrl/switch/$gender")
+            .andExpect {
+                status { isOk() }
+                content { string("Ok") }
+            }
+    }
+
+    @Test
+    fun textSwitchError(){
+        val gender = "Mario"
+        mockMvc.get("$baseUrl/switch/$gender")
+            .andExpect {
+                status { HttpStatus.BAD_REQUEST }
+                content { string("gender not accepted") }
             }
     }
 
