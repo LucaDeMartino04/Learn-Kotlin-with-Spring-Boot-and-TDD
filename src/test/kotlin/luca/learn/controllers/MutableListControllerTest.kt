@@ -1,8 +1,8 @@
 package luca.learn.controllers
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import luca.learn.dataclasses.SearchStringFromMutableList
-import luca.learn.dataclasses.SearchStringFromMutableListWithIndex
+import luca.learn.dataClasses.IndexedStringSearch
+import luca.learn.dataClasses.StringSearchInList
 import luca.learn.response.MutableListResponse
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -38,7 +38,7 @@ class MutableListControllerTest {
 
     @Test
     fun removeMutableListElementWithIndex() {
-        val mutableListWithIndex=  SearchStringFromMutableListWithIndex(mutableListOf("Hello", "World"),1)
+        val mutableListWithIndex=  IndexedStringSearch(listOfString,1)
         val jsonRequest = jacksonObjectMapper().writeValueAsString(mutableListWithIndex)
         val result = mutableListOf("Hello")
         mockMvc.get("$baseUrl/removeElementWithIndex") {
@@ -53,7 +53,7 @@ class MutableListControllerTest {
 
     @Test
     fun removeMutableListElementWithIndexError() {
-        val mutableListWithIndex=  SearchStringFromMutableListWithIndex(listOfString,3)
+        val mutableListWithIndex=  IndexedStringSearch(listOfString,3)
         val jsonRequest = jacksonObjectMapper().writeValueAsString(mutableListWithIndex)
         val result = MutableListResponse.Error("index not in range")
 
@@ -69,7 +69,7 @@ class MutableListControllerTest {
 
     @Test
     fun removeMutableListElementWithString() {
-        val mutableListWithIndex=  SearchStringFromMutableList(listOfString,"World")
+        val mutableListWithIndex=  StringSearchInList(listOfString,"World")
         val jsonRequest = jacksonObjectMapper().writeValueAsString(mutableListWithIndex)
         val result = mutableListOf("Hello")
         mockMvc.get("$baseUrl/removeElementWithString") {
@@ -84,7 +84,7 @@ class MutableListControllerTest {
 
     @Test
     fun removeMutableListElementWithStringError() {
-        val mutableListWithIndex=  SearchStringFromMutableList(listOfString,"Ciao")
+        val mutableListWithIndex=  StringSearchInList(listOfString,"Ciao")
         val jsonRequest = jacksonObjectMapper().writeValueAsString(mutableListWithIndex)
         val result = MutableListResponse.Error("value not in list")
 

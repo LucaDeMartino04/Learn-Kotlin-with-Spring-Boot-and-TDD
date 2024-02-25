@@ -1,6 +1,6 @@
 package luca.learn.controllers
 
-import luca.learn.dataclasses.SearchCharFromIndex
+import luca.learn.dataClasses.CharSearchInString
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -42,7 +42,7 @@ class StringController {
     }
 
     @PostMapping("/char")
-    fun textIndexChar(@RequestBody stringWithIndex: SearchCharFromIndex): ResponseEntity<String> {
+    fun textIndexChar(@RequestBody stringWithIndex: CharSearchInString): ResponseEntity<String> {
         val index = stringWithIndex.index
         val text = stringWithIndex.text
         val lengthText = textLength(text)

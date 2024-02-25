@@ -1,7 +1,7 @@
 package luca.learn.controllers
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import luca.learn.dataclasses.SearchCharFromIndex
+import luca.learn.dataClasses.CharSearchInString
 import org.junit.jupiter.api.Test
 
 import org.springframework.beans.factory.annotation.Autowired
@@ -69,7 +69,7 @@ class StringControllerTest {
 
     @Test
     fun textIndexChar() {
-        val request = SearchCharFromIndex(testText, 2)
+        val request = CharSearchInString(testText, 2)
         val jsonRequest = jacksonObjectMapper().writeValueAsString(request)
 
         mockMvc.post("$baseUrl/char") {
@@ -85,7 +85,7 @@ class StringControllerTest {
 
     @Test
     fun textIndexCharWithError() {
-        val request = SearchCharFromIndex(testText, -4)
+        val request = CharSearchInString(testText, -4)
         val jsonRequest = jacksonObjectMapper().writeValueAsString(request)
 
         mockMvc.post("$baseUrl/char") {
@@ -101,7 +101,7 @@ class StringControllerTest {
 
     @Test
     fun textIndexCharWithNegativeIndex() {
-        val request = SearchCharFromIndex(testText, -3)
+        val request = CharSearchInString(testText, -3)
         val jsonRequest = jacksonObjectMapper().writeValueAsString(request)
 
         mockMvc.post("$baseUrl/char") {

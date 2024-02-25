@@ -1,7 +1,7 @@
 package luca.learn.controllers
 
-import luca.learn.dataclasses.SearchStringFromMutableList
-import luca.learn.dataclasses.SearchStringFromMutableListWithIndex
+import luca.learn.dataClasses.IndexedStringSearch
+import luca.learn.dataClasses.StringSearchInList
 import luca.learn.response.MutableListResponse
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -20,7 +20,7 @@ class MutableListController {
     }
 
     @GetMapping("/removeElementWithIndex")
-    fun removeMutableListElementWithIndex(@RequestBody listOfStringAndIndex: SearchStringFromMutableListWithIndex): ResponseEntity<MutableListResponse> {
+    fun removeMutableListElementWithIndex(@RequestBody listOfStringAndIndex: IndexedStringSearch): ResponseEntity<MutableListResponse> {
         val listOfString = listOfStringAndIndex.mutableList
         val index = listOfStringAndIndex.index
         if (index in 0..<sizeMutableList(listOfString)) {
@@ -32,9 +32,9 @@ class MutableListController {
     }
 
     @GetMapping("/removeElementWithString")
-    fun removeMutableListElementWithString(@RequestBody listOfStringAndString: SearchStringFromMutableList): ResponseEntity<MutableListResponse> {
+    fun removeMutableListElementWithString(@RequestBody listOfStringAndString: StringSearchInList): ResponseEntity<MutableListResponse> {
         val listOfString = listOfStringAndString.mutableList
-        val value = listOfStringAndString.string
+        val value = listOfStringAndString.searchString
         if (value in listOfString) {
             listOfString.remove(value)
             return ResponseEntity.ok().body(MutableListResponse.Success(listOfString))
