@@ -1,4 +1,4 @@
-package luca.learn
+package luca.learn.dataclasses
 
 data class SearchCharFromIndex(
     val text: String,

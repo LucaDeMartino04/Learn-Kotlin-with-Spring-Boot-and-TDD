@@ -1,4 +1,4 @@
-package luca.learn
+package luca.learn.controllers
 
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -11,7 +11,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class LearnApplicationTests {
+class HelloWorldControllerTests {
 
     @Autowired
     private lateinit var mockMvc: MockMvc

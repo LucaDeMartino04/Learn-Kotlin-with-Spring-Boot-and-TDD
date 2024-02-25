@@ -1,5 +1,6 @@
-package luca.learn
+package luca.learn.controllers
 
+import luca.learn.dataclasses.SearchCharFromIndex
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping

@@ -1,4 +1,4 @@
-package luca.learn
+package luca.learn.controllers
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.junit.jupiter.api.Test
@@ -105,6 +105,7 @@ class BooleanControllerTest {
             }
     }
 
+    @Test
     fun majorTrue() {
         val num1 = 3.1
         val num2 = 3.0
